@@ -11,13 +11,13 @@ describe Helltriangle do
     end
 
     it "call method and send provider instance" do
-      Helltriangle::init(Helltriangle::Calculator::Client.new(Helltriangle::Calculator::Providers::EvandroProvider.new))
+      Helltriangle::init(Helltriangle::Calculator::Client.new(Helltriangle::Calculator::Providers::MatrixProvider.new))
       expect(Helltriangle._calculator_provider).not_to be_nil
     end
   end
   context "execute method" do
     before :each do
-      provider = Helltriangle::Calculator::Client.new(Helltriangle::Calculator::Providers::EvandroProvider.new)
+      provider = Helltriangle::Calculator::Client.new(Helltriangle::Calculator::Providers::MatrixProvider.new)
       Helltriangle::init(provider)
     end
 
@@ -47,9 +47,19 @@ describe Helltriangle do
       expect(result[:sum]).to eq(26)
     end
 
-    it "and triangle Array contains 4 dimension " do
+    it "and triangle Array contains n dimension " do
       result = Helltriangle::execute( [[6],[3,5],[9,7,1],[4,6,8,4],[4,6,8,4,9],[4,6,8,4,5,7],[4,6,8,4,3,5,8]])
       expect(result[:sum]).to eq(50)
+    end
+
+    it "and triangle Array contains 4 dimension " do
+      result = Helltriangle::execute( [[1],[1,0],[1,0,0],[1,0,0,100]])
+      expect(result[:sum]).to eq(101)
+    end
+
+    it "and triangle Array contains 4 dimension " do
+      result = Helltriangle::execute( [[1],[1,0],[1,0,0],[1,0,100,0]])
+      expect(result[:sum]).to eq(102)
     end
   end
 end

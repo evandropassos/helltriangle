@@ -1,4 +1,4 @@
-class Helltriangle::Calculator::Providers::EvandroProvider
+class Helltriangle::Calculator::Providers::GreaterPositionProvider
   attr_accessor :_triangle, :_route, :_dimensions
 
   def execute(triangle)
